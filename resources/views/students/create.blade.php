@@ -1,0 +1,33 @@
+@extends('layouts.app')
+
+@section('title', 'Students')
+
+@push('scripts')
+<script src="{{ asset('js/importStudent.js') }}" type="module" defer></script>
+@endpush
+
+@section('content')
+<h1 class="section-title">Add Student</h1>
+
+<form id="students_import_form" action="{{ route('students.import')  }}" method="POST" enctype="multipart/form-data"
+    class="students_import_form flow">
+    @csrf
+
+    <h2>Import Student From Excel File</h2>
+    <input type="file" name="students" required>
+    <button class="" data-button="secondary">Import</button>
+    <div class="info">
+        <h4>Make Sure that the file you select has the list of these student attributes</h4>
+        <span>Name</span>
+        <span>Gender</span>
+        <span>Date Of Birth</span>
+        <span>Email</span>
+        <span>Phone</span>
+        <span>City</span>
+        <span>Address</span>
+        <span>GPA</span>
+        <span>Major</span>
+    </div>
+</form>
+
+@endsection
