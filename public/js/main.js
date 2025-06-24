@@ -4,7 +4,6 @@ import { initSidebar } from "./sidebar.js";
 let loaderInterval;
 
 const navToggle = document.querySelector('[aria-controls="primary-side"]');
-const primaryNav = document.querySelector("#primary-side");
 
 navToggle.addEventListener("click", () => {
     const navOpened = navToggle.getAttribute("aria-expanded");
@@ -114,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 window.addEventListener("load", () => {
-    hideLoader(); // hide loader once everything has loaded
+    hideLoader();
 });
 
 export function showAjaxMessage(message, type = "success", timeout = 5000) {
@@ -131,8 +130,6 @@ export function showAjaxMessage(message, type = "success", timeout = 5000) {
         }, timeout);
     }
 }
-
-// utils.js or main.js
 
 export function ajaxNavigate(url, targetSelector = "#main-content") {
     const target = document.querySelector(targetSelector);
@@ -171,20 +168,3 @@ document.addEventListener("DOMContentLoaded", function () {
         ajaxNavigate(url); // Uses default target: #main-content
     });
 });
-
-document
-    .querySelector("[data-export]")
-    ?.addEventListener("click", function (e) {
-        e.preventDefault();
-
-        // Step 1: Trigger download via hidden <a>
-        const link = document.createElement("a");
-        link.href = this.href; // points to /students/export
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        setTimeout(() => {
-            ajaxNavigate("/students");
-        }, 500);
-    });
